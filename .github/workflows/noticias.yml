@@ -1,0 +1,31 @@
+name: Agente de Noticias Diarias
+
+on:
+  schedule:
+    - cron: "0 14 * * *" # 9:00 AM Ecuador (UTC-5)
+  workflow_dispatch: # Para probar manualmente
+
+jobs:
+  enviar-noticias:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install google-genai requests
+
+      - name: Ejecutar agente de noticias
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          cd 02-automatizacion-noticias
+          python news_agent.py
