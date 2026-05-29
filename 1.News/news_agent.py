@@ -24,7 +24,7 @@ def get_news() -> str:
     topics_str = ", ".join(TOPICS)
 
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-1.5-flash-002",
         contents=f"""Hoy es {today}. Busca las 10 noticias más importantes, virales 
 y novedosas de las últimas 24 horas en estos temas: {topics_str}.
 
