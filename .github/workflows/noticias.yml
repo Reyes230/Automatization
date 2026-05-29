@@ -23,9 +23,7 @@ jobs:
 
       - name: Ejecutar agente de noticias
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY}}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: |
-          cd 02-automatizacion-noticias
-          python news_agent.py
+        run: python news_agent.py
